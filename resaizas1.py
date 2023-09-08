@@ -7,15 +7,21 @@ data = []
 # Lentelės stulpelių antraštės
 header = ['Data', 'Atlikti pratimai', 'Pakartojimų skaičius', 'Irankio Svoris (kg)']
 
+# Nustatykite pradinį lango dydį (priklauso nuo jūsų poreikių)
+initial_window_size = (800, 400)
+
 # Sukuriamas lango išdėstymas
 layout = [
-    [sg.Table(values=data, headings=header, auto_size_columns=False, justification='right',
-              display_row_numbers=False, num_rows=min(35, len(data)))],
-    [sg.Button('Pridėti'), sg.Button('Redaguoti'), sg.Button('Ištrinti'), sg.Button('Saugoti į failą'), sg.Button('Atkurti iš failo'), sg.Button('Duomenų apdorojimas'), sg.Button('Išeiti')]
+    [sg.Table(values=data, headings=header, auto_size_columns=True, justification='right',
+              display_row_numbers=False, num_rows=min(35, len(data)), key='Table')],
+    [sg.Button('Pridėti', size=(15, 1)), sg.Button('Redaguoti', size=(15, 1)),
+     sg.Button('Ištrinti', size=(15, 1)), sg.Button('Saugoti į failą', size=(15, 1)),
+     sg.Button('Atkurti iš failo', size=(15, 1)), sg.Button('Duomenų apdorojimas', size=(15, 1)),
+     sg.Button('Išeiti', size=(15, 1))]
 ]
 
-# Sukuriame langą
-window = sg.Window('Sportininko treniruočių duomenys', layout)
+# Sukuriame langą su nurodytu dydžiu
+window = sg.Window('Sportininko treniruočių duomenys', layout, size=initial_window_size)
 
 # Funkcija, kuri atnaujina lentelę
 def update_table():
